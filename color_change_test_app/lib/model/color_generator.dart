@@ -18,13 +18,12 @@ class ColorGenerator {
     int greenBg = _rng.nextInt(255) * 0x100; // 256^1
     int blueBg = _rng.nextInt(255);
 
-    // setting the opposite values to bytes of color of the text
-    // (by opposite meaning that same byte values make 255 when
-    // added together)
-    int redText = 255 * 0x10000 - redBg;
-    int greenText = 255 * 0x100 - greenBg;
-    int blueText = 255 - blueBg;
+    int bgColor = alpha + redBg + greenBg + blueBg;
+    // setting the inverted value to text color 
+    // (keeping the opacity at max, hence AND 0xFF000000)
+    int textColor = (~bgColor) | 0xFF000000; 
 
-    return { "bgColor":alpha+redBg+greenBg+blueBg, "textColor":alpha+redText+greenText+blueText };
+    // return { "bgColor":alpha+redBg+greenBg+blueBg, "textColor":alpha+redText+greenText+blueText };
+    return { "bgColor":bgColor, "textColor":textColor };
   }
 }
