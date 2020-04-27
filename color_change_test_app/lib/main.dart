@@ -1,18 +1,21 @@
 import 'package:color_change_test_app/screens/color_changer_screen.dart';
+import 'package:color_change_test_app/theme/style.dart';
 import 'package:flutter/material.dart';
 
+
+/// Starting point of the app.
 void main() => runApp(MyApp());
 
+
+/// Main class that initializes the app.
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Color Changer',
+      theme: mainTheme,
       home: ColorChangerScreen(),
     );
   }
-} 
+}

@@ -1,43 +1,34 @@
-import 'dart:math';
-
+import 'package:color_change_test_app/model/color_generator.dart';
 import 'package:flutter/material.dart';
 
+/// Widget with color changing feature implementation.
+/// 
+/// Changes the background color with text inside it 
+/// randomly on each tap.
 class RandomColorWidget extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() => _RandomColorWidgetState();
 }
 
 class _RandomColorWidgetState extends State<RandomColorWidget> {
-
-  Random _rng = new Random();
-
+  // colors which are used in background and text and are
+  // changed in _setRandomCurrentColor()
   Color _currentBgColor = Colors.white;
   Color _currentTextColor = Colors.black;
 
   void _setRandomCurrentColor() {
 
     setState(() {
-      // setting int bytes for random values of each RGB values separately.
-      // (Alpha not generated and always at max)
-      int alpha = 255 * 256 * 256 * 256;
-      int redBg = _rng.nextInt(255) * 256 * 256;
-      int greenBg = _rng.nextInt(255) * 256;
-      int blueBg = _rng.nextInt(255);
+      Map colors = ColorGenerator.generateInverseColorCodes();
 
-
-      // setting the opposite values to color of the text
-      int redText = 255 * 256 * 256 - redBg;
-      int greenText = 255 * 256 - greenBg;
-      int blueText = 255 - blueBg;
-
-      _currentBgColor = Color(alpha+redBg+greenBg+blueBg);
-      _currentTextColor = Color(alpha+redText+greenText+blueText);
+      _currentBgColor = Color(colors["bgColor"]);
+      _currentTextColor = Color(colors["textColor"]);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // Uses GestureDetector to detect taps.
     return GestureDetector(
       onTap: () => _setRandomCurrentColor(),
       child: Container(
