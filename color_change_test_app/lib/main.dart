@@ -13,9 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Color Changer',
       theme: mainTheme,
-      home: ColorChangerScreen(),
+      home: SafeArea(
+        child: ColorChangerScreen(),
+      ),
     );
   }
 }

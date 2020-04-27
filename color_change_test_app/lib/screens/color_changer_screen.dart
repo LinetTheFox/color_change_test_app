@@ -8,14 +8,11 @@ class ColorChangerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Tap below to change BG color."),
-        ),
-        body: RandomColorWidget(),
-      )
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Tap below to change BG color."),
+      ),
+      body: RandomColorWidget(),
     );
   }
-
 }
